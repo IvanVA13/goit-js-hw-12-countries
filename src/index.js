@@ -34,7 +34,7 @@ function addCounties(query) {
             countryContainerRef.innerHTML = tempCountriesListMkp(data)
         }
         if (data.length > 10) {
-            return notification.alert({ text: notification.text.alert })
+            notification.alert({ text: notification.text.alert })
         }
     }).catch(error=> notification.alert({ text: notification.text.empty }))
 }
