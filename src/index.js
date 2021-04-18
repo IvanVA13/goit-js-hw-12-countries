@@ -12,14 +12,12 @@ const inputRef = document.querySelector(".input")
 inputRef.addEventListener('input', debounce(onInput, 500));
 function onInput(e) {
     if (!isAlpha(e.target.value, 'en-US', { ignore: " -" })) {
-        notification.error({text: notification.text.error});
-        inputRef.classList.add("invalid")
-        inputRef.classList.remove("valid")
+        notification.error({ text: notification.text.error });
+        addStyleInputBorder("invalid", "valid")
     } else {
         countryContainerRef.innerHTML = ""
         addCounties(e.target.value);
-        inputRef.classList.add("valid")
-        inputRef.classList.remove("invalid")
+        addStyleInputBorder("valid", "invalid")
     }
 }
 
@@ -37,4 +35,9 @@ function addCounties(query) {
             notification.alert({ text: notification.text.alert })
         }
     }).catch(error=> notification.alert({ text: notification.text.empty }))
+}
+
+function addStyleInputBorder(add, rem) {
+    inputRef.classList.add(add)
+    inputRef.classList.remove(rem)
 }
